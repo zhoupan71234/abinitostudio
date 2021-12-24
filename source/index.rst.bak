@@ -1,0 +1,348 @@
+.. ablib_test documentation master file, created by
+   sphinx-quickstart on Sun Nov  7 14:25:27 2021.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to ablib_test's documentation!
+======================================
+
+####################
+Introduction
+####################
+
+====================
+Function
+====================
+We developed a software named Abinito Studio based on python. 
+It mainly integrates 3 functions: 3D observation of POSCAR atomic structure, 
+ssh remote execution of commands and primary calculation and plotting.
+
+====================
+Name
+====================
+Abinito Studio
+
+====================
+Version number
+====================
+1.0.0
+
+====================
+Operating environment
+====================
+Windows 10, Python3.x
+
+====================
+Dependent libraries
+====================
+numpy, PyQt5, matplotlib, traits, mayavi, pyxtal, jumpssh
+
+====================
+Third-party library version reference
+====================
+- `NumPy>=1.19.4 <https://www.scipy.org/scipylib/download.html>`_ 
+PyQt5 = 5.10
+matplotlib = 3.2.2
+traits = 4.6.0
+mayavi = 4.7.1
+pyxtal = 0.3.0
+jumpssh = 1.6.5
+====================
+Third-party library installation command
+====================
+Open the command panel, ¡®cd¡¯ enter the install.py path, and enter the command ¡®python install.py¡¯.
+
+====================
+Operation mode
+====================
+run the appMain.py file, ¡®python appMain.py¡¯
+
+
+
+####################
+Program interface
+####################
+
+.. image:: images/01.jpg
+
+====================
+Menubar
+====================
+
+------------
+File
+------------
+Open POSCAR: Open a POSCAR file and display it in the 3D area
+
+Build structure£ºLattice parameter input
+
+Close: Close the whole program
+
+------------
+Calculation
+------------
+Scf: Input through the windows end panel, and transfer tasks to the Linux cluster to complete the structure optimization of the material.
+
+scf_noncal:
+
+band: Input through the windows end panel, and cast the task to the Linux cluster to complete the energy band calculation of the material.
+
+band_noncal: 
+
+DOS: Input through the windows end panel, cast tasks to the Linux cluster to complete the density of states calculation of the material
+
+Phonon: Input through the windows end panel, cast tasks to the Linux cluster to complete the phonon calculation of the material
+
+Wannier: Input through the windows end panel, cast tasks to the linux cluster to complete the wannier calculation of materials
+
+Pyxtal£ºBuild a POSCAR file
+
+------------
+Plot
+------------
+Bands: Select an EIGENVAL file and input the drawing parameters to plot bands of the material in the 2D area.
+
+Projected: Select a PROCAR file and input the drawing parameters to plot the projected bands of the material in the 2D area.
+
+Band-DOS: Select a DOSCAR file and input the drawing parameters to plot the density of states of the material in the 2D area
+
+CHGCAR 2D: Select a CHGCAR file, enter the drawing parameters, and display the 2D charge density of the material in the 3D area.
+
+CHGCAR 3D: Select a CHGCAR file, enter the drawing parameters, and display the 3D charge density of the material in the 3D area.
+
+------------
+Tools
+------------
+Supercell: After opening a POSCAR file, you can expand in x, y, and z directions
+
+Structure_interface£º
+
+Download£º
+
+------------
+Settings
+------------
+Node Connection: Before you can cast a computing task to linux from windows side, 
+you have to set up the node connection, which includes the node's ip, username, 
+password and other related information.
+
+------------
+Help
+------------
+Instruction: This is a brief introduction to the program.
+
+About: This is some information about the program.
+
+====================
+Toolbar
+====================
+This includes the closing of the program, the moving of the 3D atom positions and the input of the length of the move.
+
+====================
+3D structure display area
+====================
+The 3D content is mainly displayed here.
+
+====================
+2D plotting display area
+====================
+The 2D plotting is mainly in this area.
+
+====================
+Information output area
+====================
+Information is output in this area.
+
+####################
+Example
+####################
+
+====================
+File-¡¾Open POSCAR¡¿
+====================
+Open a POSCAR file and display it in the 3D area.
+As shown in the figure, [examples]- [POSCAR] is opened.
+
+.. image:: images/02.jpg
+
+====================
+File-¡¾Build structure¡¿
+====================
+The input of lattice parameters: first input the space group of the material, 
+and then select the input mode [coordinate] or [matrix]. In [coordinate] mode, 
+you need to enter the length of the three sides and the degrees of the three included angles; 
+in [matrix] mode, you need to enter a matrix. Finally, 
+choose the coordinate type [Fractional] or [Cartesian].
+
+====================
+File-¡¾Close¡¿
+====================
+Exit the application.
+
+.. image:: images/03.jpg
+
+
+====================
+Calculation-¡¾VASP¡¿
+====================
+After setting, perform scf calculation.
+Click [VASP]-[scf] to bring up the input panel, enter the necessary INCAR and KPOINTS files for relax and scf respectively, 
+as well as the POTCAR path, element order, calculation path, VASP command and the kernel number of the task, 
+click Start Calculation to finish casting the task from the windows side. 
+The VASP_files folder is generated on the desktop by default. These input information you can save in [default]-[scf.txt], 
+next time when you input, you can click [Get information] to fill in directly.
+The operation of [scf_noncal], [band], [band_noncal], [DOS], [phonon], 
+and [wannier] is the same as the use of [scf].
+
+.. image:: images/04.jpg
+
+.. image:: images/05.jpg
+
+====================
+Calculation-¡¾Pyxtal¡¿
+====================
+Generate a POSCAR file, the default save path is the desktop new [VASP_files] folder, 
+choose a type you want to save [POSCAR] or [cif].
+
+.. image:: images/06.jpg
+
+====================
+Plot-¡¾Bands¡¿
+====================
+[Plot]-[Bands] Then select the [EIGENVAL_CdCl] file in the [examples] folder, 
+and input the relevant parameters in the dialog.
+The Fermi level of CdCl2 is -3.172 eV, and there are three symmetry points, 
+namely M, §¤, and K. [High symmetry point] input a list, each element is a string, 
+support Latex syntax. The Y-axis parameters have the minimum and maximum values, 
+the label of the Y-axis, and the label font size. Title parameters include title and font size. 
+You can also set the thickness of the dashed and solid lines. 
+Finally, there are the thickness of the coordinates, the direction and thickness of the scale, 
+and the size of the scale label. Then click [Plot], 
+and the result is displayed in the 2D plotting area as shown in the figure.
+
+.. image:: images/07.jpg
+
+.. image:: images/08.jpg
+
+====================
+Plot-¡¾Projected Band¡¿
+====================
+[Plot]-[Projected Bands] Then select the [PROCAR _CdCl] file in the [examples] folder, 
+and input the relevant parameters in the dialog.
+Enter the Fermi energy level of -3.0637eV; the number of high symmetry points is 3; 
+radius scaling because the radius of each small circle represented in the graph, enter 150; 
+enter the minimum maximum value of the Y-axis; 
+the horizontal coordinate scaling factor indicates the number of points that can be drawn on each strip, 
+which determines the speed of drawing the graph, if each strip can carry 180 points, 
+when the input is 2, only 90 points will be drawn at intervals, 
+which can be entered when the data is larger You can enter a larger value when the data is larger to observe the whole; 
+for the track selection, you just need to check the checkbox of the atomic track you want to draw, 
+and you can click to modify the color of the track.
+
+.. image:: images/09.jpg
+
+.. image:: images/10.jpg
+
+====================
+Plot-¡¾DOS¡¿
+====================
+[Plot]-[DOS] Then select the [DOSCAR] file in the [examples] folder, 
+and input the relevant parameters in the dialog. 
+You just need to check the checkbox of the track you want to select.
+
+.. image:: images/11.jpg
+
+.. image:: images/12.jpg
+
+====================
+Plot-¡¾CHGCAR 2D¡¿
+====================
+[Plot]-[ CHGCAR 2D] Then select the [CHGCAR] file in the [examples] folder, 
+and input the relevant parameters in the dialog.
+Just select a plane, which will be displayed in the 3D drawing area. 
+
+.. image:: images/13.jpg
+
+.. image:: images/14.jpg
+
+====================
+Plot-¡¾CHGCAR 3D¡¿
+====================
+[Plot]-[ CHGCAR 2D] Then select the [CHGCAR] file in the [examples] folder, 
+and input the relevant parameters in the dialog.
+Just plot, which will be displayed in the 3D drawing area. 
+
+.. image:: images/15.jpg
+
+====================
+Tool-¡¾Supercell¡¿
+====================
+After opening a POSCAR file, you can expand in x, y, and z directions.
+After opening [examples] - [POSCAR], click [supercell] and enter the parameters in dialog a(x), 
+b(y) and c(z) are 4, 3 and 2 respectively, and the result of cell expansion is shown in the figure.
+
+.. image:: images/16.jpg
+
+.. image:: images/17.jpg
+
+====================
+Settings-¡¾Node Connection¡¿
+====================
+There are two node connection modes, one is to jump to the node, and the other is not. 
+When we do not check the check box to do not need to jump to the node mode, 
+the jump node information can¡¯t be input at this time, enter the remote node ip, 
+user name, password, path information, 
+the local path defaults to the desktop to generate the [VASP_files] folder. 
+When we check the checkbox to switch to the node mode, in addition to the remote node information, 
+we also need to enter the ip, user name, password, and path information of the jump node. 
+The local path will generate the [VASP_files] folder by default on the desktop. 
+In order to avoid the need to manually enter each node connection, 
+you can save the node information in [node_information.txt], 
+and click [Get ip info] in the dialog to automatically obtain the information.
+
+.. image:: images/18.jpg
+
+.. image:: images/19.jpg
+
+====================
+Help-¡¾Instruction¡¿
+====================
+This is a brief introduction to the program.
+
+.. image:: images/20.jpg
+
+====================
+Help-¡¾About¡¿
+====================
+This is some information about the program.
+
+.. image:: images/21.jpg
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   pages/study
+
+.. figure:: images/01.jpg
+   :align:  center
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
